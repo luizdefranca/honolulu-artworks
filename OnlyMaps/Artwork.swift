@@ -38,6 +38,8 @@ class Artwork: NSObject, MKAnnotation {
         if discipline == "Sculpture" { return "Statue"}
         return "Flag"
     }
+
+
     init(title: String, locationName: String, discipline: String, coordinate: CLLocationCoordinate2D) {
 
         self.title = title
@@ -49,7 +51,7 @@ class Artwork: NSObject, MKAnnotation {
 
     init?(json: [Any]) {
         self.title = json[16] as? String ?? "No Title"
-        self.locationName = json[12] as! String
+        self.locationName = json[11] as! String
         self.discipline = json[15] as! String
 
         if let lat = Double(json[18] as! String), let long = Double(json[19] as! String) {
@@ -57,6 +59,7 @@ class Artwork: NSObject, MKAnnotation {
         } else {
             self.coordinate = CLLocationCoordinate2D()
         }
+        
     }
 
     func mapItem() -> MKMapItem {
