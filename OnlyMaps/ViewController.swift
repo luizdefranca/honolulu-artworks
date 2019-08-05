@@ -17,6 +17,8 @@ class ViewController: UIViewController {
     let location = CLLocation(latitude: 21.282778, longitude: -157.829444)
     let regionRadius : CLLocationDistance = 1000
     var artworks : [Artwork] = []
+    let locationManager = CLLocationManager()
+
     override func viewDidLoad() {
         super.viewDidLoad()
         centerMap(location: location)
@@ -30,6 +32,10 @@ class ViewController: UIViewController {
         mapView.addAnnotations(artworks)
     }
 
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        checkLocationAuthorizationStatus()
+    }
     func centerMap(location: CLLocation)  {
         let coordinateRegion = MKCoordinateRegion(center: location.coordinate, latitudinalMeters: regionRadius, longitudinalMeters: regionRadius)
         mapView.setRegion(coordinateRegion, animated: true)
@@ -63,6 +69,14 @@ class ViewController: UIViewController {
 //        let validWorks = works.compactMap{ Artwork(json: $0) }
 //        artworks.append(contentsOf: validWorks)
 
+    }
+
+    func checkLocationAuthorizationStatus() {
+        if CLLocationManager.authorizationStatus() == .authorizedWhenInUse {
+            mapView.showsUserLocation = true
+        } else {
+            locationManager.requestWhenInUseAuthorization()
+        }
     }
 }
 
