@@ -24,7 +24,8 @@ class ViewController: UIViewController {
         mapView.delegate = self
 
         //register the class ArtworkMakerView with the map view's default reuse identifier
-        mapView.register(ArtworkMakerView.self, forAnnotationViewWithReuseIdentifier: MKMapViewDefaultAnnotationViewReuseIdentifier)
+//        mapView.register(ArtworkMakerView.self, forAnnotationViewWithReuseIdentifier: MKMapViewDefaultAnnotationViewReuseIdentifier)
+        mapView.register(ArtworkView.self, forAnnotationViewWithReuseIdentifier: MKMapViewDefaultAnnotationViewReuseIdentifier)
         loadInitialData()
         mapView.addAnnotations(artworks)
     }
@@ -68,6 +69,9 @@ class ViewController: UIViewController {
 extension ViewController: MKMapViewDelegate {
 
     //Return a view for each annotation
+
+
+/*
     func mapView(_ mapView: MKMapView, viewFor annotation: MKAnnotation) -> MKAnnotationView? {
         guard let annotation = annotation as? Artwork else { return nil }
         let identifier = "marker"
@@ -80,12 +84,11 @@ extension ViewController: MKMapViewDelegate {
             annotationView.canShowCallout = true
             annotationView.calloutOffset = CGPoint(x: -5, y: 5)
             annotationView.rightCalloutAccessoryView = UIButton(type: .detailDisclosure)
-
         }
 
         return annotationView
     }
-
+*/
     func mapView(_ mapView: MKMapView, annotationView view: MKAnnotationView, calloutAccessoryControlTapped control: UIControl) {
         let location = view.annotation as! Artwork
         let launchOptions = [MKLaunchOptionsDirectionsModeKey: MKLaunchOptionsDirectionsModeDriving]

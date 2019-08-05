@@ -33,6 +33,11 @@ class Artwork: NSObject, MKAnnotation {
             return .green
         }
     }
+
+    var imageName: String? {
+        if discipline == "Sculpture" { return "Statue"}
+        return "Flag"
+    }
     init(title: String, locationName: String, discipline: String, coordinate: CLLocationCoordinate2D) {
 
         self.title = title
