@@ -15,6 +15,7 @@
 		254F35E722F4982A00354A9C /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 254F35E522F4982A00354A9C /* LaunchScreen.storyboard */; };
 		254F35EF22F4989E00354A9C /* PublicArt.json in Resources */ = {isa = PBXBuildFile; fileRef = 254F35EE22F4989E00354A9C /* PublicArt.json */; };
 		254F35F222F4A53100354A9C /* Artwork.swift in Sources */ = {isa = PBXBuildFile; fileRef = 254F35F122F4A53100354A9C /* Artwork.swift */; };
+		254F35F422F885B300354A9C /* ArtworkMarkerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 254F35F322F885B300354A9C /* ArtworkMarkerView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -28,6 +29,7 @@
 		254F35E822F4982A00354A9C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		254F35EE22F4989E00354A9C /* PublicArt.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = PublicArt.json; sourceTree = "<group>"; };
 		254F35F122F4A53100354A9C /* Artwork.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Artwork.swift; sourceTree = "<group>"; };
+		254F35F322F885B300354A9C /* ArtworkMarkerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArtworkMarkerView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -63,6 +65,7 @@
 				254F35F022F498AB00354A9C /* Others */,
 				254F35D922F4982700354A9C /* AppDelegate.swift */,
 				254F35F122F4A53100354A9C /* Artwork.swift */,
+				254F35F322F885B300354A9C /* ArtworkMarkerView.swift */,
 				254F35DB22F4982700354A9C /* ViewController.swift */,
 				254F35DD22F4982700354A9C /* Main.storyboard */,
 				254F35E322F4982A00354A9C /* Assets.xcassets */,
@@ -153,6 +156,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				254F35F422F885B300354A9C /* ArtworkMarkerView.swift in Sources */,
 				254F35DC22F4982700354A9C /* ViewController.swift in Sources */,
 				254F35E222F4982700354A9C /* OnlyMaps.xcdatamodeld in Sources */,
 				254F35F222F4A53100354A9C /* Artwork.swift in Sources */,

@@ -16,12 +16,17 @@ class ViewController: UIViewController {
     let myLocation = CLLocationCoordinate2D(latitude: 43.78513042074207, longitude: -79.4240542273944)
     let location = CLLocation(latitude: 21.282778, longitude: -157.829444)
     let regionRadius : CLLocationDistance = 1000
-
+    var artworks : [Artwork] = []
     override func viewDidLoad() {
         super.viewDidLoad()
         centerMap(location: location)
         showArtwork()
         mapView.delegate = self
+
+        //register the class ArtworkMakerView with the map view's default reuse identifier
+        mapView.register(ArtworkMakerView.self, forAnnotationViewWithReuseIdentifier: MKMapViewDefaultAnnotationViewReuseIdentifier)
+        loadInitialData()
+        mapView.addAnnotations(artworks)
     }
 
     func centerMap(location: CLLocation)  {
@@ -31,11 +36,32 @@ class ViewController: UIViewController {
 
     func showArtwork() {
         // show artwork on map
-        let artwork = Artwork(title: "King David Kalakaua",
-                              locationName: "Waikiki Gateway Park",
-                              discipline: "Sculpture",
-                              coordinate: CLLocationCoordinate2D(latitude: 21.283921, longitude: -157.831661))
-        mapView.addAnnotation(artwork)
+//        let artwork = Artwork(title: "King David Kalakaua",
+//                              locationName: "Waikiki Gateway Park",
+//                              discipline: "Sculpture",
+//                              coordinate: CLLocationCoordinate2D(latitude: 21.283921, longitude: -157.831661))
+//        mapView.addAnnotation(artwork)
+    }
+
+    func loadInitialData() {
+        guard let fileName = Bundle.main.path(forResource: "PublicArt", ofType: "json")  else  {return}
+        let optionalData = try? Data(contentsOf: URL(fileURLWithPath: fileName))
+
+        guard
+            let data = optionalData,
+            let json = try? JSONSerialization.jsonObject(with: data),
+            let dictionary = json as? [String: Any],
+            let works = dictionary["data"] as? [[Any]]
+
+        else {  return }
+
+        for validWork in works {
+            guard let artwork = Artwork(json: validWork) else { continue}
+            artworks.append(artwork)
+        }
+//        let validWorks = works.compactMap{ Artwork(json: $0) }
+//        artworks.append(contentsOf: validWorks)
+
     }
 }
 
@@ -64,7 +90,7 @@ extension ViewController: MKMapViewDelegate {
         let location = view.annotation as! Artwork
         let launchOptions = [MKLaunchOptionsDirectionsModeKey: MKLaunchOptionsDirectionsModeDriving]
         location.mapItem().openInMaps(launchOptions: launchOptions)
-        
+
 
     }
 }
